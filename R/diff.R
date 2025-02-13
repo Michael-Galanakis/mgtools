@@ -1,9 +1,13 @@
+#' @import diffobj 
+#' @import waldo 
+#' @import data.table
 
 #' Difference between directory contents
 #'
 #' @param x path to folder
 #' @param y path to folder
 #' @export
+
 diff.folder = \(x, y, ...) {
   x.files = list.files(path = x, ...) |> sort()
   y.files = list.files(path = y, ...) |> sort()
