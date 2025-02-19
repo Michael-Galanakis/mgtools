@@ -1,4 +1,4 @@
-devtools::load_all()
+source('R/diff.R')
 compare.subdir = \(subdir, ...) {
   current = 'C:/Users/MichaelGalanakis/omicronbycims/eSystems by CIMS - C - Workspace/2 Sponsors/NBCD/GNSC-001-101/current/' |>
     file.path(subdir)
