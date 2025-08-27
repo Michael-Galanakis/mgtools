@@ -1,14 +1,13 @@
-#' @import diffobj 
-#' @import waldo 
+#' @import diffobj
+#' @import waldo
 #' @import data.table
 
-#' Difference between directory contents
+#' @title Difference between directory contents
 #'
 #' @param x path to folder
 #' @param y path to folder
 #' @export
-
-diff.folder = \(x, y, ...) {
+diff_folder = \(x, y, ...) {
   x.files = list.files(path = x, ...) |> sort()
   y.files = list.files(path = y, ...) |> sort()
   diffobj::diffChr(x.files, y.files)
@@ -19,7 +18,7 @@ diff.folder = \(x, y, ...) {
 #' @param x path to folder
 #' @param y path to folder
 #' @export
-diff.folder.hash = \(x, y, diff_list = FALSE, useWaldo = FALSE, ...) {
+diff_folder_hash = \(x, y, diff_list = FALSE, useWaldo = FALSE, ...) {
   x.ds = create_file_ds(x, hash = TRUE, modified = FALSE, ...)
   y.ds = create_file_ds(y, hash = TRUE, modified = FALSE, ...)
 
@@ -43,7 +42,7 @@ diff.folder.hash = \(x, y, diff_list = FALSE, useWaldo = FALSE, ...) {
 #' @param x path to folder
 #' @param y path to folder
 #' @export
-diff.folder.mtime = \(x, y, ...) {
+diff_folder_mtime = \(x, y, ...) {
   x.ds = create_file_ds(x, ...)
   y.ds = create_file_ds(y, ...)
 
@@ -57,7 +56,7 @@ diff.folder.mtime = \(x, y, ...) {
 #' @param x path to folder
 #' @param y path to folder
 #' @export
-diff.dir.contents = \(x, y, ...) {
+diff_dir_contents = \(x, y, ...) {
   # derive files
   x.files = list.files(path = x, ...) |> sort()
   y.files = list.files(path = y, ...) |> sort()

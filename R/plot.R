@@ -1,5 +1,17 @@
+#' Adds axis table to a ggplot object
+#'
+#' @param plot.main Plot you'd like to add an axis table to
+#' @param axis.table A table with the x-axis value and the variables that should appear in the table
+#' @examples
+#' p = ggplot2::qplot(iris$Species, iris$Sepal.Length) + labs(y='Sepal length')
+#' iris_summary = data.table(iris)[, .(`Mean` = mean(Sepal.Length) |> round(1), `SD`=sd(Sepal.Length) |> round(2)), Species]
+#' add_axis_table(p, iris_summary)
 #' @export
 add_axis_table = \(plot.main, axis.table) {
+  require(ggplot2)
+  require(data.table)
+  require(patchwork)
+
   id.variable = names(axis.table)[1]
   statistic.variables = names(axis.table)[-1]
 
@@ -10,7 +22,7 @@ add_axis_table = \(plot.main, axis.table) {
   axis.table.long$variable = axis.table.long$variable |> factor(levels = new_level_order)
 
   plot.axis.table = axis.table.long |>
-    ggplot(aes(cyl, variable, label=value)) +
+    ggplot(aes(.data[[id.variable]], .data[['variable']], label=value)) +
     geom_text() +
     labs(y = "", x = NULL) +
     theme_minimal() +
@@ -20,3 +32,4 @@ add_axis_table = \(plot.main, axis.table) {
   plot.theme = theme_minimal() + theme(axis.title.x = element_blank())
   patchwork::wrap_plots(plot.main + plot.theme, plot.axis.table, ncol=1, heights = c(6,1))
 }
+
