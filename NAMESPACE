@@ -2,6 +2,7 @@
 
 export(add_axis_table)
 export(check)
+export(cross_join)
 export(dataset_filter_columns)
 export(deluxe_filter)
 export(deluxe_gsub)
