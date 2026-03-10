@@ -29,7 +29,6 @@ add_axis_table = \(plot.main, axis.table) {
     theme(axis.line = element_blank(), axis.ticks = element_blank(), axis.text.x = element_blank(), axis.text.y = element_text(colour = 'black'),
       panel.grid = element_blank(), strip.text = element_blank())
 
-  plot.theme = theme_minimal() + theme(axis.title.x = element_blank())
-  patchwork::wrap_plots(plot.main + plot.theme, plot.axis.table, ncol=1, heights = c(6,1))
+  patchwork::wrap_plots(plot.main, plot.axis.table, ncol=1, heights = c(6,1))
 }
 
